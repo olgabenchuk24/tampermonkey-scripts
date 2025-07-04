@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WWK Partnerportal
 // @author       RENTE IT
-// @version      1
+// @version      2
 // @description  downloads every new document from WWK infobox
 // @match        https://portal.wwk.de/group/vip/*
 // ==/UserScript==
