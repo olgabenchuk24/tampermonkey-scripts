@@ -2,7 +2,7 @@
 // @name         WWK Partnerportal
 // @author       RENTE IT
 // @version      1
-// @description  downloads every relevant document from WWK infobox
+// @description  downloads every new document from WWK infobox
 // @match        https://portal.wwk.de/group/vip/*
 // ==/UserScript==
 
@@ -13,9 +13,9 @@
     // 1) Button to start manually
     // ----------------------------------------------------
     const btn = document.createElement('button');
-    btn.textContent = "WWK";
+    btn.textContent = "WWK Dokumente";
     btn.style.position = "fixed";
-    btn.style.top = "50px";
+    btn.style.top = "10px";
     btn.style.right = "10px";
     btn.style.zIndex = 9999;
     btn.style.padding = "8px 12px";
@@ -57,13 +57,14 @@
             }
 
             while (documentToDownload) {
-                documentToDownload.click();
                 await waitFor(1000);
+                documentToDownload.click();
+                await waitFor(3000);
                 const newDocumentToDownload = document.querySelector('table tr:first-of-type td:nth-of-type(3) a');
 
                 const isNewDocumentToDownlowedTheSameAsThePreviouslyDownloadedOne = documentToDownload === newDocumentToDownload;
                 if (isNewDocumentToDownlowedTheSameAsThePreviouslyDownloadedOne) {
-                    throw new Error('The previous document has not yet disappeared after 1s');
+                    throw new Error('The previous document has not yet disappeared after 2s');
                 }
 
                 documentToDownload = newDocumentToDownload;
@@ -80,3 +81,4 @@
         await new Promise(r => setTimeout(r, ms));
     }
 })();
+
